@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import ListPost from './componentes/ListPost';
+import Header from './componentes/Header';
+import './bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    class App extends Component {
+      state = {
+        listPost : [],
+        listProduct : []
+
+      }
+      componentDidMount() {
+        /*
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("X-Custom-Header", "ProcessThisImmediately");
+        var miInit = {
+              method: 'GET',
+              headers : myHeaders,
+              mode: 'no-cors',
+              cache: 'default' };
+        var myRequest = new Request('http://localhost:8080/articulos/32', miInit);
+        */
+        fetch('http://localhost:8080/articulos/')
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ listPost: data })
+        })
+      .catch(console.log)
+    }
+
+    render(){
+      return (
+          <div className="container">
+            <Header titulo="Minimoviles" />
+            <ListPost listPost={this.state.listPost} />
+          </div>
+        )
+    }
+
 }
 
 export default App;
