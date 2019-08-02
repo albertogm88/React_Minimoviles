@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Post from './Post';
+import Producto from './Producto';
 
-class ListPost extends Component{
+class ListProductos extends Component{
 
   state = {
-    listPost : []
+    ListProductos : []
   }
 
   componentDidMount() {
@@ -19,26 +19,25 @@ class ListPost extends Component{
                 cache: 'default' };
           var myRequest = new Request('http://localhost:8080/articulos/32', miInit);
           */
-          fetch('http://localhost:8080/articulos/')
+          fetch('http://localhost:8080/productos/')
           .then(res => res.json())
           .then((data) => {
-            this.setState({ listPost: data })
+            this.setState({ ListProductos: data })
           })
         .catch(console.log)
       }
 
     render(){
       return(
-
-        <div className="row">
-            {this.state.listPost.map((post) => (
-              <Post key={post.idContent} post={post} />
+          <div>
+            {this.state.ListProductos.map((producto) => (
+              <Producto key={producto.idProducto} producto={producto} />
                 ))}
           </div>
-      );
+      )
 
     }
 
 }
 
-export default ListPost;
+export default ListProductos;
