@@ -12,11 +12,10 @@ class App extends Component {
           <div className="container">
             <Header titulo="Minimoviles" />
             <div className="row">
-              <div className="col-lg-8">
-                <ListPost/>
-                
+              <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <ListPost />
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <ListProductos />
               </div>
             </div>
